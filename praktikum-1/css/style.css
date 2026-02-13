@@ -1,11 +1,4 @@
-/*
-*   File: style.css
-*   Description: Custom styles for Syaila Zahwa's personal portfolio website.
-*   Author: Gemini CLI
-*   Date: 2026-02-12
-*/
 
-/* --- CSS Reset & Global Styles --- */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -16,7 +9,7 @@
     /* Color Palette - Pink Gradient Edition */
     --primary-light-pink: #FFD1DC; /* Light Pink */
     --primary-medium-pink: #FFB6C1; /* Medium Pink */
-    --primary-dark-pink: #FF69B4;  /* Deep Pink */
+    --primary-dark-pink: hsl(329, 44%, 76%);  /* Deep Pink */
     --secondary-rose: #FFC0CB;     /* Rose Pink */
     --accent-purple: #E0BBE4;      /* Soft Purple for gradients */
     --text-dark: #333333;
@@ -216,6 +209,26 @@ p {
     transform: translateY(-2px);
 }
 
+.btn-secondary:hover {
+    background-color: var(--primary-dark-pink);
+    color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+}
+
+.mb-4 {
+    margin-bottom: 40px;
+}
+
+.project-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
 /* --- Navbar --- */
 .navbar {
     position: fixed;
@@ -358,6 +371,26 @@ body.dark-mode .hero-section {
     max-width: 800px;
     margin: 0 auto;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--primary-light-pink);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    animation: floatAnimation 3s ease-in-out infinite;
+}
+
+@keyframes floatAnimation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
 
 .hero-content h1 {
@@ -455,6 +488,96 @@ body.dark-mode .about-section {
     left: 0;
 }
 
+/* --- Education Section --- */
+.education-section {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+body.dark-mode .education-section {
+    background-color: var(--bg-dark-mode);
+    color: var(--text-light);
+}
+
+.education-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.education-item {
+    padding: 25px;
+    border-radius: 16px;
+    background: var(--card-bg-light);
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-speed);
+}
+body.dark-mode .education-item {
+    background: var(--card-bg-dark);
+    border: 1px solid var(--border-dark);
+    box-shadow: var(--shadow-dark);
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+body.dark-mode .education-item:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.education-item h3 {
+    color: var(--primary-dark-pink);
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+}
+
+.education-item .university {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+body.dark-mode .education-item .university {
+    color: var(--text-light);
+}
+
+.education-item .years {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #666;
+}
+body.dark-mode .education-item .years {
+    color: #bbb;
+}
+
+.education-item ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.education-item ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+body.dark-mode .education-item ul li {
+    color: var(--text-light);
+}
+
+.education-item ul li::before {
+    content: '🎓'; /* Graduation cap icon */
+    position: absolute;
+    left: 0;
+    color: var(--primary-dark-pink);
+}
+
+
 /* --- Skills Section --- */
 .skills-section {
     background: linear-gradient(135deg, var(--primary-medium-pink) 0%, var(--primary-light-pink) 100%);
@@ -467,24 +590,78 @@ body.dark-mode .skills-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    align-items: start; /* Align items to the start of their grid areas */
 }
 
-.skill-card {
-    text-align: center;
+.skill-category {
+    padding: 25px;
+    border-radius: 16px;
+    background: var(--card-bg-light);
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-speed);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 150px;
+    height: 100%; /* Ensure cards take full height */
+}
+body.dark-mode .skill-category {
+    background: var(--card-bg-dark);
+    border: 1px solid var(--border-dark);
+    box-shadow: var(--shadow-dark);
 }
 
-.skill-card h3 {
-    margin-top: 10px;
-    margin-bottom: 20px;
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+}
+body.dark-mode .skill-category:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.skill-category h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
     font-size: 1.5rem;
     color: var(--primary-dark-pink);
+    text-align: center;
 }
 
+.skill-category ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Allow list to grow and push progress bar down */
+}
+
+.skill-category ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+body.dark-mode .skill-category ul li {
+    color: var(--text-light);
+}
+
+.skill-category ul li::before {
+    content: '▪'; /* Bullet point */
+    color: var(--primary-dark-pink);
+    position: absolute;
+    left: 0;
+}
+
+.skill-category p {
+    flex-grow: 1; /* Allow paragraph to grow */
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+body.dark-mode .skill-category p {
+    color: var(--text-light);
+}
+
+/* Progress bar styles are reused from previous skill-card */
 .progress-bar-container {
     width: 100%;
     height: 10px;
@@ -523,7 +700,20 @@ body.dark-mode .portfolio-section {
     overflow: hidden;
     border-radius: 16px;
     cursor: pointer;
-    padding: 0; /* Remove default glass-card padding */
+    padding: 20px 0 0 0; /* Adjusted padding to accommodate top title */
+}
+
+.project-title-top {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-dark-pink);
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0 20px; /* Add horizontal padding for text */
+}
+body.dark-mode .project-title-top {
+    color: var(--text-light);
 }
 
 .portfolio-item img {
@@ -545,7 +735,7 @@ body.dark-mode .portfolio-section {
     color: var(--text-light);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Align content to the top */
     align-items: center;
     opacity: 0;
     transition: opacity var(--transition-speed);
@@ -569,6 +759,9 @@ body.dark-mode .portfolio-section {
 
 .portfolio-item .overlay p {
     font-size: 0.9rem;
+    overflow: auto; /* Add scrollbars if content overflows */
+    flex-grow: 1; /* Allow paragraph to take available space */
+    margin-bottom: 10px; /* Adjust margin for spacing */
 }
 
 /* --- Contact Section --- */
@@ -582,84 +775,45 @@ body.dark-mode .contact-section {
 .contact-content {
     max-width: 600px;
     margin: 0 auto;
+    text-align: center; /* Center the text content */
+    padding: 30px; /* Add some padding to the glass card */
 }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.contact-content p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
 }
-
-.form-group {
-    margin-bottom: 15px;
-    position: relative;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--primary-dark-pink);
-}
-body.dark-mode .form-group label {
+body.dark-mode .contact-content p {
     color: var(--text-light);
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.4);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--text-dark);
-    transition: all var(--transition-speed);
+.contact-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-dark-pink);
-    box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-body.dark-mode .form-group input:focus,
-body.dark-mode .form-group textarea:focus {
-    border-color: var(--accent-purple);
-    box-shadow: 0 0 0 3px rgba(179, 157, 219, 0.4);
-    background-color: rgba(70, 70, 70, 0.7);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(51, 51, 51, 0.7);
-}
-
-textarea {
-    resize: vertical;
-}
-
-.form-group .error-message {
-    color: #e74c3c;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: block;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 15px;
+.contact-content ul li {
+    margin-bottom: 10px;
     font-size: 1.1rem;
 }
 
-.form-status {
-    margin-top: 20px;
-    text-align: center;
+.contact-content ul li a {
+    color: var(--primary-dark-pink);
+    text-decoration: none;
     font-weight: 600;
+    transition: color var(--transition-speed);
 }
+
+.contact-content ul li a:hover {
+    color: var(--accent-purple);
+    text-decoration: underline;
+}
+
+/* No form-specific styles needed anymore */
+/* Remove .form-group, .form-group label, .form-group input, .form-group textarea, .submit-btn, .form-status */
+
 
 /* --- Footer --- */
 footer {
@@ -668,110 +822,4 @@ footer {
     text-align: center;
     padding: 25px 0;
     border-top: 1px solid #eee;
-}
-
-/* --- Custom Cursor --- */
-/* Custom Cursor Keyframes for Galaxy Effect */
-@keyframes galaxyPulse {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.custom-cursor {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    /* Galaxy Gradient Background */
-    background: radial-gradient(circle at center, #FFD1DC 0%, #E0BBE4 30%, #880e4f 70%, #4a148c 100%);
-    background-size: 200% 200%; /* For animation */
-    animation: galaxyPulse 5s ease infinite; /* Dynamic galaxy effect */
-    position: fixed;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, transform 0.1s ease; /* Added transform to transition */
-    z-index: 9999;
-    mix-blend-mode: difference; /* For a cool interactive effect */
-    opacity: 0.8;
-}
-body.dark-mode .custom-cursor {
-    background: radial-gradient(circle at center, #E0BBE4 0%, #6a1b9a 30%, #3a007a 70%, #2a005a 100%);
-    background-size: 200% 200%;
-    animation: galaxyPulse 5s ease infinite;
-}
-
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .navbar .container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .nav-brand {
-        font-size: 1.5rem;
-    }
-
-    h1 {
-        font-size: 3rem;
-    }
-    .hero-content .tagline {
-        font-size: 1.2rem;
-    }
-    .hero-actions {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .hero-actions .btn {
-        width: 80%;
-        margin: 0 auto;
-    }
-
-    .about-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .about-image {
-        max-width: 250px;
-    }
-    .about-text ul {
-        text-align: left;
-        padding-left: 25px;
-    }
-
-    .skills-grid, .portfolio-grid {
-        grid-template-columns: 1fr;
-    }
-
-    section {
-        padding: 60px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    h2 {
-        font-size: 2rem;
-    }
-    .hero-content .tagline {
-        font-size: 1rem;
-    }
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    .nav-links {
-        font-size: 0.9rem;
-    }
-    .dark-mode-toggle {
-        font-size: 1.2rem;
-    }
-    .custom-cursor {
-        display: none; /* Hide custom cursor on small screens */
-    }
 }
