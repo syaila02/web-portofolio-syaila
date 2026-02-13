@@ -1,12 +1,6 @@
-/*
-*   File: script.js
-*   Description: Custom JavaScript for Syaila Zahwa's personal portfolio website.
-*   Author: Gemini CLI
-*   Date: 2026-02-12
-*/
+
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Smooth Scrolling ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -16,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Navbar Scroll Transparency ---
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -26,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Section Scroll Animations (Intersection Observer) ---
     const sections = document.querySelectorAll('section');
 
     const sectionObserverOptions = {
