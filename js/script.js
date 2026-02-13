@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
 
     const sectionObserverOptions = {
-        root: null, // viewport
-        threshold: 0.1, // 10% of section visible
+        root: null, 
+        threshold: 0.1, 
         rootMargin: "0px"
     };
 
@@ -31,25 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('section-visible');
-                // observer.unobserve(entry.target); // Uncomment if you want animation to run only once
             } else {
-                // Optional: remove section-visible if you want sections to hide again when scrolled out
-                // entry.target.classList.remove('section-visible');
+                entry.target.classList.remove('section-visible');
             }
         });
     }, sectionObserverOptions);
 
     sections.forEach(section => {
-        section.classList.add('section-hidden'); // Add hidden class initially
+        section.classList.add('section-hidden'); 
         sectionObserver.observe(section);
     });
 
-    // --- Skill Progress Bar Animations (Intersection Observer) ---
     const skillProgressBars = document.querySelectorAll('.progress-bar');
 
     const progressBarObserverOptions = {
         root: null,
-        threshold: 0.7, // 70% of the progress bar container visible
+        threshold: 0.7, 
     };
 
     const progressBarObserver = new IntersectionObserver((entries, observer) => {
@@ -67,11 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBarObserver.observe(bar);
     });
 
-    // --- Dark Mode Toggle ---
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
 
-    // Check for saved theme preference
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'dark') {
         body.classList.add('dark-mode');
@@ -80,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            // Save preference to localStorage
             if (body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
             } else {
